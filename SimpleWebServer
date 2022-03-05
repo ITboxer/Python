@@ -1,0 +1,19 @@
+#!/usr/bin/env python2
+
+import SimpleHTTPServer
+import SocketServer
+
+PORT = 8006
+
+class GetHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+
+    def do_GET(self):
+        
+                SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+                logging.error(self.headers)
+
+
+Handler = GetHandler
+httpd = SocketServer.TCPServer(("", PORT), Handler)
+
+httpd.serve_forever()
